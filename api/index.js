@@ -161,8 +161,13 @@ app.post('/chat', async (req, res) => {
   try {
     const { content } = req.body;
     
-    const prompt = `Recreate the following content in a professional and polished manner, ensuring that headings and content are clearly separated: ${content}`;
-
+    const prompt = `Please modify the given content to use proper, conversational English that feels natural and engaging to a human reader.
+    Ensure the tone is creative and interesting, grabbing the reader's attention while keeping the flow easy to follow.
+    Expand on ideas where necessary to add depth or detail. If the content is very brief, include additional thoughts or supporting information to enrich the post.
+    Use HTML tags for formatting to enhance readability, such as <h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <p>, <br>, <b>, <strong>, <i>, <em>, <u>, <mark>, <small>, <del>, <ins>, &nbsp;, &lt;, &gt;, &amp;, &quot;, &apos;, <ul>, <ol>, <li>, <blockquote>, <q>, <code>, <pre>, <samp>, <abbr>, <time>, <figure>, <figcaption>, <hr>, <span> and avoid # or * for formatting the string.
+    Do not stray from the main idea provided by the user. Stick closely to their original intent while improving the clarity and quality of the writing.
+    Also add some emojis if required.
+    The content is: ${content}`;
 
     const result = await model.generateContent(prompt);
     if (result && result.response && result.response.text) {
